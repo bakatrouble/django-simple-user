@@ -20,7 +20,6 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sites",
     "clean_user",
-    "tests"
 ]
 
 SITE_ID = 1
@@ -29,5 +28,3 @@ if django.VERSION >= (1, 10):
     MIDDLEWARE = ()
 else:
     MIDDLEWARE_CLASSES = ()
-
-AUTH_USER_MODEL = "tests.CustomUser"

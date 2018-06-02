@@ -11,12 +11,12 @@ Django Clean User
 .. image:: https://codecov.io/gh/valerymelou/django-clean-user/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/valerymelou/django-clean-user
 
-Provides an abstract base User model without first and last name fields.
+Provides a simple abstract User model without first and last name fields.
 
 Documentation
 -------------
 
-The full documentation is at https://django-clean-user.readthedocs.io.
+The full documentation is available at https://django-clean-user.readthedocs.io.
 
 Quickstart
 ----------
@@ -25,33 +25,52 @@ Install Django Clean User::
 
     pip install django-clean-user
 
-Add it to your `INSTALLED_APPS`:
-
-.. code-block:: python
-
-    INSTALLED_APPS = (
-        ...
-        'clean_user.apps.CleanUserConfig',
-        ...
-    )
-
-Add Django Clean User's URL patterns:
-
-.. code-block:: python
-
-    from clean_user import urls as clean_user_urls
-
-
-    urlpatterns = [
-        ...
-        url(r'^', include(clean_user_urls)),
-        ...
-    ]
-
 Features
 --------
 
-* TODO
+* Abstract User model without the fields `first_name` and `last_name`
+* Abstract User model without the fields `first_name`, `last_name` and `email`
+* Abstract User model without the fields `first_name`, `last_name` and `username`
+
+Usage
+-----
+
+If you are like me, you might have found yourself extending `django.contrib.auth.base_user.AbstractBaseUser` just to remove the `first_name` and `last_name` fields from your final User model. I was tired of doing that and I created this package. It defines an abstract User model without those fields so that you can just inherit from it to create your User model. It is as simple as doing this:
+
+::
+
+    from clean_user.models import AbstractUser
+
+
+    class User(AbstractUser):
+        pass
+
+This will create a User model with all the fields that happen to exists in the default Django's User model except `first_name` and `last_name`.
+
+Bonuses
+-------
+
+There are some cases where you only want `username` or `email` but not both fields in your model. Django Clean User has got you covered. You can use `AbstractUserWithUsername` or `AbstractUserWithEmail` to achieve each scenario.
+
+For a User model with `username` as identifying field but without `first_name`, `last_name` and `email` do:
+
+::
+
+    from clean_user.models import AbstractUserWithUsername
+
+
+    class User(AbstractUserWithUsername):
+        pass
+
+For a User model with `email` as identifying field but without `first_name`, `last_name` and `username` do:
+
+::
+
+    from clean_user.models import AbstractUserWithUsername
+
+
+    class User(AbstractUserWithEmail):
+        pass
 
 Running Tests
 -------------
