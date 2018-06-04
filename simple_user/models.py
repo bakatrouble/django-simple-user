@@ -98,8 +98,8 @@ class AbstractUserWithEmail(SimpleAbstractUser):
     class Meta(SimpleAbstractUser.Meta):
         abstract = True
 
-    def simple(self):
-        super().simple()
+    def clean(self):
+        super().clean()
         self.email = self.__class__.objects.normalize_email(self.email)
 
     def get_short_name(self):
@@ -138,8 +138,8 @@ class AbstractUser(AbstractUserWithUsername):
     class Meta(AbstractUserWithUsername.Meta):
         abstract = True
 
-    def simple(self):
-        super().simple()
+    def clean(self):
+        super().clean()
         self.email = self.__class__.objects.normalize_email(self.email)
 
     def email_user(self, subject, message, from_email=None, **kwargs):
