@@ -5,6 +5,7 @@ test_django-simple-user
 Tests for `django-simple-user` models module.
 """
 
+from django.core import mail
 from django.test import TestCase
 
 from simple_user.models import AbstractUser, AbstractUserWithUsername, AbstractUserWithEmail
@@ -13,7 +14,7 @@ from simple_user.models import AbstractUser, AbstractUserWithUsername, AbstractU
 class TestAbstractUser(TestCase):
 
     def setUp(self):
-        self.user = AbstractUser(username="janedoe")
+        self.user = AbstractUser(username="janedoe", email="janedoe@testserver.com")
 
     def test_is_simple(self):
         with self.assertRaises(AttributeError):
@@ -29,6 +30,11 @@ class TestAbstractUser(TestCase):
 
     def test_get_full_name(self):
         self.assertEqual(self.user.get_full_name(), "janedoe")
+
+    def test_email_user(self):
+        self.user.email_user("Dummy message", "This is a dummy message")
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].subject, "Dummy message")
 
 
 class TestAbstractUserWithUsername(TestCase):
@@ -69,3 +75,8 @@ class TestAbstractUserWithEmail(TestCase):
 
     def test_get_full_name(self):
         self.assertEqual(self.user.get_full_name(), "johndoe@testserver.com")
+
+    def test_email_user(self):
+        self.user.email_user("Dummy message", "This is a dummy message")
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].subject, "Dummy message")
