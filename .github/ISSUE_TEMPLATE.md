@@ -1,4 +1,4 @@
-* Django Clean User version:
+* Django Simple User version:
 * Django version:
 * Python version:
 * Operating System:

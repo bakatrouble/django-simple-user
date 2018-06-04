@@ -1,29 +1,29 @@
 =============================
-Django Clean User
+Django Simple User
 =============================
 
-.. image:: https://badge.fury.io/py/django-clean-user.svg
-    :target: https://badge.fury.io/py/django-clean-user
+.. image:: https://badge.fury.io/py/django-simple-user.svg
+    :target: https://badge.fury.io/py/django-simple-user
 
-.. image:: https://travis-ci.org/valerymelou/django-clean-user.svg?branch=master
-    :target: https://travis-ci.org/valerymelou/django-clean-user
+.. image:: https://travis-ci.org/valerymelou/django-simple-user.svg?branch=master
+    :target: https://travis-ci.org/valerymelou/django-simple-user
 
-.. image:: https://codecov.io/gh/valerymelou/django-clean-user/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/valerymelou/django-clean-user
+.. image:: https://codecov.io/gh/valerymelou/django-simple-user/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/valerymelou/django-simple-user
 
 Provides a simple abstract User model without first and last name fields.
 
 Documentation
 -------------
 
-The full documentation is available at https://django-clean-user.readthedocs.io.
+The full documentation is available at https://django-simple-user.readthedocs.io.
 
 Quickstart
 ----------
 
-Install Django Clean User::
+Install Django Simple User::
 
-    pip install django-clean-user
+    pip install django-simple-user
 
 Features
 --------
@@ -39,7 +39,7 @@ If you are like me, you might have found yourself extending ``django.contrib.aut
 
 ::
 
-    from clean_user.models import AbstractUser
+    from simple_user.models import AbstractUser
 
 
     class User(AbstractUser):
@@ -50,13 +50,13 @@ This will create a User model with all the fields that happen to exists in the d
 Bonuses
 -------
 
-There are some cases where you only want ``username`` or ``email`` but not both fields in your model. Django Clean User has got you covered. You can use ``AbstractUserWithUsername`` or ``AbstractUserWithEmail`` to achieve each scenario.
+There are some cases where you only want ``username`` or ``email`` but not both fields in your model. Django Simple User has got you covered. You can use ``AbstractUserWithUsername`` or ``AbstractUserWithEmail`` to achieve each scenario.
 
 For a User model with ``username`` as identifying field but without ``first_name``, ``last_name`` and ``email`` do:
 
 ::
 
-    from clean_user.models import AbstractUserWithUsername
+    from simple_user.models import AbstractUserWithUsername
 
 
     class User(AbstractUserWithUsername):
@@ -66,7 +66,7 @@ For a User model with ``email`` as identifying field but without ``first_name``,
 
 ::
 
-    from clean_user.models import AbstractUserWithUsername
+    from simple_user.models import AbstractUserWithUsername
 
 
     class User(AbstractUserWithEmail):

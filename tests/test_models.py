@@ -1,13 +1,13 @@
 """
-test_django-clean-user
+test_django-simple-user
 ------------
 
-Tests for `django-clean-user` models module.
+Tests for `django-simple-user` models module.
 """
 
 from django.test import TestCase
 
-from clean_user.models import AbstractUser, AbstractUserWithUsername, AbstractUserWithEmail
+from simple_user.models import AbstractUser, AbstractUserWithUsername, AbstractUserWithEmail
 
 
 class TestAbstractUser(TestCase):
@@ -15,7 +15,7 @@ class TestAbstractUser(TestCase):
     def setUp(self):
         self.user = AbstractUser(username="janedoe")
 
-    def test_is_clean(self):
+    def test_is_simple(self):
         with self.assertRaises(AttributeError):
             self.user.first_name
         with self.assertRaises(AttributeError):
@@ -36,7 +36,7 @@ class TestAbstractUserWithUsername(TestCase):
     def setUp(self):
         self.user = AbstractUserWithUsername(username="janedoe")
 
-    def test_is_clean(self):
+    def test_is_simple(self):
         with self.assertRaises(AttributeError):
             self.user.first_name
         with self.assertRaises(AttributeError):
@@ -56,7 +56,7 @@ class TestAbstractUserWithEmail(TestCase):
     def setUp(self):
         self.user = AbstractUserWithEmail(email="johndoe@testserver.com")
 
-    def test_is_clean(self):
+    def test_is_simple(self):
         with self.assertRaises(AttributeError):
             self.user.first_name
         with self.assertRaises(AttributeError):

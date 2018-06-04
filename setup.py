@@ -11,7 +11,7 @@ except ImportError:
 
 
 def get_version(*file_paths):
-    """Retrieves the version from clean_user/__init__.py"""
+    """Retrieves the version from simple_user/__init__.py"""
     filename = os.path.join(os.path.dirname(__file__), *file_paths)
     version_file = open(filename).read()
     version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]",
@@ -21,7 +21,7 @@ def get_version(*file_paths):
     raise RuntimeError('Unable to find version string.')
 
 
-version = get_version("clean_user", "__init__.py")
+version = get_version("simple_user", "__init__.py")
 
 
 if sys.argv[-1] == 'publish':
@@ -45,21 +45,21 @@ readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 setup(
-    name='django-clean-user',
+    name='django-simple-user',
     version=version,
     description="""Provides an abstract base User model without first and last name fields.""",
     long_description=readme + '\n\n' + history,
     author='Valery Melou',
     author_email='valerymelou@gmail.com',
-    url='https://github.com/valerymelou/django-clean-user',
+    url='https://github.com/valerymelou/django-simple-user',
     packages=[
-        'clean_user',
+        'simple_user',
     ],
     include_package_data=True,
     install_requires=[],
     license="BSD",
     zip_safe=False,
-    keywords='django-clean-user',
+    keywords='django-simple-user',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Framework :: Django :: 1.11',

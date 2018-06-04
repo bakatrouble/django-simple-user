@@ -1,7 +1,7 @@
 from django.contrib.auth.base_user import BaseUserManager
 
 
-class CleanUserManager(BaseUserManager):
+class SimpleUserManager(BaseUserManager):
 
     def create_user(self, login, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', False)
@@ -20,7 +20,7 @@ class CleanUserManager(BaseUserManager):
         return self._create_user(login, password, **extra_fields)
 
 
-class UserWithUsernameManager(CleanUserManager):
+class UserWithUsernameManager(SimpleUserManager):
 
     def _create_user(self, username, password, **extra_fields):
         """
@@ -35,7 +35,7 @@ class UserWithUsernameManager(CleanUserManager):
         return user
 
 
-class UserWithEmailManager(CleanUserManager):
+class UserWithEmailManager(SimpleUserManager):
 
     def _create_user(self, email, password, **extra_fields):
         """

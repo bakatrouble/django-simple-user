@@ -2,25 +2,25 @@
 Usage
 =====
 
-To use Django Clean User in a project, add it to your `INSTALLED_APPS`:
+To use Django Simple User in a project, add it to your `INSTALLED_APPS`:
 
 .. code-block:: python
 
     INSTALLED_APPS = (
         ...
-        'clean_user.apps.CleanUserConfig',
+        'simple_user.apps.SimpleUserConfig',
         ...
     )
 
-Add Django Clean User's URL patterns:
+Add Django Simple User's URL patterns:
 
 .. code-block:: python
 
-    from clean_user import urls as clean_user_urls
+    from simple_user import urls as simple_user_urls
 
 
     urlpatterns = [
         ...
-        url(r'^', include(clean_user_urls)),
+        url(r'^', include(simple_user_urls)),
         ...
     ]

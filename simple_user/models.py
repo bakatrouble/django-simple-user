@@ -10,7 +10,7 @@ from django.utils.translation import gettext_lazy as _
 from .managers import UserWithUsernameManager, UserWithEmailManager
 
 
-class CleanAbstractUser(AbstractBaseUser, PermissionsMixin):
+class SimpleAbstractUser(AbstractBaseUser, PermissionsMixin):
     """
     Base abstract User class for all abstract classes defined in this module.
     """
@@ -35,7 +35,7 @@ class CleanAbstractUser(AbstractBaseUser, PermissionsMixin):
         abstract = True
 
 
-class AbstractUserWithUsername(CleanAbstractUser):
+class AbstractUserWithUsername(SimpleAbstractUser):
     """
     And abstract base class implementing a fully featured user Model with
     admin-compliant permissions.
@@ -59,7 +59,7 @@ class AbstractUserWithUsername(CleanAbstractUser):
 
     USERNAME_FIELD = 'username'
 
-    class Meta(CleanAbstractUser.Meta):
+    class Meta(SimpleAbstractUser.Meta):
         abstract = True
 
     def get_full_name(self):
@@ -75,7 +75,7 @@ class AbstractUserWithUsername(CleanAbstractUser):
         return self.username
 
 
-class AbstractUserWithEmail(CleanAbstractUser):
+class AbstractUserWithEmail(SimpleAbstractUser):
     """
     And abstract base class implementing a fully featured User model with
     admin-compliant permissions.
@@ -95,11 +95,11 @@ class AbstractUserWithEmail(CleanAbstractUser):
 
     USERNAME_FIELD = 'email'
 
-    class Meta(CleanAbstractUser.Meta):
+    class Meta(SimpleAbstractUser.Meta):
         abstract = True
 
-    def clean(self):
-        super().clean()
+    def simple(self):
+        super().simple()
         self.email = self.__class__.objects.normalize_email(self.email)
 
     def get_short_name(self):
@@ -138,8 +138,8 @@ class AbstractUser(AbstractUserWithUsername):
     class Meta(AbstractUserWithUsername.Meta):
         abstract = True
 
-    def clean(self):
-        super().clean()
+    def simple(self):
+        super().simple()
         self.email = self.__class__.objects.normalize_email(self.email)
 
     def email_user(self, subject, message, from_email=None, **kwargs):

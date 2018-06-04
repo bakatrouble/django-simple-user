@@ -1,4 +1,4 @@
-.PHONY: clean-pyc clean-build docs help
+.PHONY: simple-pyc simple-build docs help
 .DEFAULT_GOAL := help
 define BROWSER_PYSCRIPT
 import os, webbrowser, sys
@@ -15,20 +15,20 @@ BROWSER := python -c "$$BROWSER_PYSCRIPT"
 help:
 	@grep '^[a-zA-Z]' $(MAKEFILE_LIST) | sort | awk -F ':.*?## ' 'NF==2 {printf "\033[36m  %-25s\033[0m %s\n", $$1, $$2}'
 
-clean: clean-build clean-pyc
+simple: simple-build simple-pyc
 
-clean-build: ## remove build artifacts
+simple-build: ## remove build artifacts
 	rm -fr build/
 	rm -fr dist/
 	rm -fr *.egg-info
 
-clean-pyc: ## remove Python file artifacts
+simple-pyc: ## remove Python file artifacts
 	find . -name '*.pyc' -exec rm -f {} +
 	find . -name '*.pyo' -exec rm -f {} +
 	find . -name '*~' -exec rm -f {} +
 
 lint: ## check style with flake8
-	flake8 clean_user tests
+	flake8 simple_user tests
 
 test: ## run tests quickly with the default Python
 	python runtests.py tests
@@ -37,23 +37,23 @@ test-all: ## run tests on every Python version with tox
 	tox
 
 coverage: ## check code coverage quickly with the default Python
-	coverage run --source clean_user runtests.py tests
+	coverage run --source simple_user runtests.py tests
 	coverage report -m
 	coverage html
 	open htmlcov/index.html
 
 docs: ## generate Sphinx HTML documentation, including API docs
-	rm -f docs/django-clean-user.rst
+	rm -f docs/django-simple-user.rst
 	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ clean_user
-	$(MAKE) -C docs clean
+	sphinx-apidoc -o docs/ simple_user
+	$(MAKE) -C docs simple
 	$(MAKE) -C docs html
 	$(BROWSER) docs/_build/html/index.html
 
-release: clean ## package and upload a release
+release: simple ## package and upload a release
 	python setup.py sdist upload
 	python setup.py bdist_wheel upload
 
-sdist: clean ## package
+sdist: simple ## package
 	python setup.py sdist
 	ls -l dist

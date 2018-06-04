@@ -19,7 +19,7 @@ INSTALLED_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sites",
-    "clean_user",
+    "simple_user",
 ]
 
 SITE_ID = 1
