@@ -50,26 +50,26 @@ This will create a User model with all the fields that happen to exists in the d
 Bonuses
 -------
 
-There are some cases where you only want ``username`` or ``email`` but not both fields in your model. Django Simple User has got you covered. You can use ``AbstractUserWithUsername`` or ``AbstractUserWithEmail`` to achieve each scenario.
+There are some cases where you only want ``username`` or ``email`` but not both fields in your model. Django Simple User has got you covered. You can use ``SimpleUserWithUsername`` or ``SimpleUserWithEmail`` to achieve each scenario.
 
 For a User model with ``username`` as identifying field but without ``first_name``, ``last_name`` and ``email`` do:
 
 ::
 
-    from simple_user.models import AbstractUserWithUsername
+    from simple_user.models import SimpleUserWithUsername
 
 
-    class User(AbstractUserWithUsername):
+    class User(SimpleUserWithUsername):
         pass
 
 For a User model with ``email`` as identifying field but without ``first_name``, ``last_name`` and ``username`` do:
 
 ::
 
-    from simple_user.models import AbstractUserWithUsername
+    from simple_user.models import SimpleUserWithUsername
 
 
-    class User(AbstractUserWithEmail):
+    class User(SimpleUserWithEmail):
         pass
 
 Running Tests

@@ -8,7 +8,7 @@ Tests for `django-simple-user` models module.
 from django.core import mail
 from django.test import TestCase
 
-from simple_user.models import AbstractUser, AbstractUserWithUsername, AbstractUserWithEmail
+from simple_user.models import AbstractUser, SimpleUserWithUsername, SimpleUserWithEmail
 
 
 class TestAbstractUser(TestCase):
@@ -37,10 +37,10 @@ class TestAbstractUser(TestCase):
         self.assertEqual(mail.outbox[0].subject, "Dummy message")
 
 
-class TestAbstractUserWithUsername(TestCase):
+class TestSimpleUserWithUsername(TestCase):
 
     def setUp(self):
-        self.user = AbstractUserWithUsername(username="janedoe")
+        self.user = SimpleUserWithUsername(username="janedoe")
 
     def test_is_simple(self):
         with self.assertRaises(AttributeError):
@@ -57,10 +57,10 @@ class TestAbstractUserWithUsername(TestCase):
         self.assertEqual(self.user.get_full_name(), "janedoe")
 
 
-class TestAbstractUserWithEmail(TestCase):
+class TestSimpleUserWithEmail(TestCase):
 
     def setUp(self):
-        self.user = AbstractUserWithEmail(email="johndoe@testserver.com")
+        self.user = SimpleUserWithEmail(email="johndoe@testserver.com")
 
     def test_is_simple(self):
         with self.assertRaises(AttributeError):

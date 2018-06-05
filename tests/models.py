@@ -2,10 +2,10 @@ from django.contrib.auth.models import Group, Permission
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from simple_user.models import AbstractUserWithUsername, AbstractUserWithEmail
+from simple_user.models import SimpleUserWithUsername, SimpleUserWithEmail
 
 
-class UserWithUsername(AbstractUserWithUsername):
+class UserWithUsername(SimpleUserWithUsername):
     groups = models.ManyToManyField(
         Group,
         verbose_name=_('groups'),
@@ -27,7 +27,7 @@ class UserWithUsername(AbstractUserWithUsername):
     )
 
 
-class UserWithEmail(AbstractUserWithEmail):
+class UserWithEmail(SimpleUserWithEmail):
     groups = models.ManyToManyField(
         Group,
         verbose_name=_('groups'),

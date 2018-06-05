@@ -35,7 +35,7 @@ class SimpleAbstractUser(AbstractBaseUser, PermissionsMixin):
         abstract = True
 
 
-class AbstractUserWithUsername(SimpleAbstractUser):
+class SimpleUserWithUsername(SimpleAbstractUser):
     """
     And abstract base class implementing a fully featured user Model with
     admin-compliant permissions.
@@ -75,7 +75,7 @@ class AbstractUserWithUsername(SimpleAbstractUser):
         return self.username
 
 
-class AbstractUserWithEmail(SimpleAbstractUser):
+class SimpleUserWithEmail(SimpleAbstractUser):
     """
     And abstract base class implementing a fully featured User model with
     admin-compliant permissions.
@@ -121,7 +121,7 @@ class AbstractUserWithEmail(SimpleAbstractUser):
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
 
-class AbstractUser(AbstractUserWithUsername):
+class AbstractUser(SimpleUserWithUsername):
     """
     An abstract base class implementing a fully featured User model with
     admin-compliant permissions.
@@ -135,7 +135,7 @@ class AbstractUser(AbstractUserWithUsername):
     EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = ['email']
 
-    class Meta(AbstractUserWithUsername.Meta):
+    class Meta(SimpleUserWithUsername.Meta):
         abstract = True
 
     def clean(self):
