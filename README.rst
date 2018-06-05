@@ -2,6 +2,10 @@
 Django Simple User
 =============================
 
+.. image:: https://pyup.io/repos/github/valerymelou/django-simple-user/shield.svg
+     :target: https://pyup.io/repos/github/valerymelou/django-simple-user/
+     :alt: Updates
+
 .. image:: https://badge.fury.io/py/django-simple-user.svg
     :target: https://badge.fury.io/py/django-simple-user
 
