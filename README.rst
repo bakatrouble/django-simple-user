@@ -39,7 +39,7 @@ Features
 Usage
 -----
 
-If you are like me, you might have found yourself extending ``django.contrib.auth.base_user.AbstractBaseUser`` just to remove the ``first_name`` and ``last_name`` fields from your final User model. I was tired of doing that and I created this package. It defines an abstract User model without those fields so that you can just inherit from it to create your User model. It is as simple as doing this:
+If you are like me, you might have found yourself extending ``django.contrib.auth.base_user.AbstractBaseUser`` just to remove the ``first_name`` and ``last_name`` fields from your final User model. I was tired of doing that and I created this package. It defines an abstract User model without those fields so that you can just inherit from it to create your User model. Let's suppose you have a ``users`` app with a ``models.py`` file containing the following:
 
 ::
 
@@ -49,7 +49,13 @@ If you are like me, you might have found yourself extending ``django.contrib.aut
     class User(AbstractUser):
         pass
 
-This will create a User model with all the fields that happen to exists in the default Django's User model except ``first_name`` and ``last_name``.
+Then in your settings file:
+
+::
+
+    AUTH_USER_MODEL = 'users.User'
+
+This will create a User model with all the fields that happen to exists in the default Django's User model except ``first_name`` and ``last_name`` and use it for authentication in your app.
 
 Bonuses
 -------
@@ -75,6 +81,11 @@ For a User model with ``email`` as identifying field but without ``first_name``,
 
     class User(SimpleUserWithEmail):
         pass
+
+Note
+----
+
+Always remember to set your extended User model as the authentication User model by setting ``AUTH_USER_MODEL`` in your settings file.
 
 Running Tests
 -------------
